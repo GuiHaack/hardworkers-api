@@ -3,16 +3,21 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
+  Patch,
   Delete,
 } from '@nestjs/common';
 import { EmployeesService } from './employees.service';
-import { Employees } from './employees.entity';
+import { CreateEmployeeDto } from './dto/create-employees.dto';
 
 @Controller('employees')
 export class EmployeesController {
   constructor(private readonly employeesService: EmployeesService) {}
+
+  @Post()
+  create(@Body() createEmployeeDto: CreateEmployeeDto) {
+    return this.employeesService.create(createEmployeeDto);
+  }
 
   @Get()
   findAll() {
@@ -20,22 +25,20 @@ export class EmployeesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.employeesService.findOne(+id); // Certifique-se de converter o id para número
-  }
-
-  @Post()
-  create(@Body() employee: Employees) {
-    return this.employeesService.create(employee);
+  findOne(@Param('id') id: number) {
+    return this.employeesService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() employee: Employees) {
-    return this.employeesService.update(+id, employee); // Certifique-se de converter o id para número
+  update(
+    @Param('id') id: number,
+    @Body() updateEmployeeDto: CreateEmployeeDto,
+  ) {
+    return this.employeesService.update(id, updateEmployeeDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.employeesService.remove(+id); // Certifique-se de converter o id para número
+  remove(@Param('id') id: number) {
+    return this.employeesService.remove(id);
   }
 }

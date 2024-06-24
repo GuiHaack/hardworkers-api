@@ -1,13 +1,22 @@
-// src/employees/employee.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Roles } from '../roles/roles.entity';
+import { Companies } from '../companies/companies.entity';
 
-@Entity()
+@Entity('employees')
 export class Employees {
   @PrimaryGeneratedColumn()
   idEmployee: number;
 
-  @Column()
-  idRole: number;
+  @ManyToOne(() => Roles, (role) => role.employees)
+  @JoinColumn({ name: 'idRole' })
+  role: Roles;
 
   @Column()
   name: string;
@@ -29,4 +38,7 @@ export class Employees {
 
   @Column({ nullable: true })
   phoneNumber: string;
+
+  @OneToOne(() => Companies, (company) => company.employee, { nullable: true })
+  company: Companies;
 }

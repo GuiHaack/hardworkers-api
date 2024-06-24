@@ -1,8 +1,7 @@
-// src/roles/role.entity.ts
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Employees } from '../employees/employees.entity';
 
-@Entity()
+@Entity('roles')
 export class Roles {
   @PrimaryGeneratedColumn()
   idRole: number;
@@ -13,6 +12,6 @@ export class Roles {
   @Column()
   alias: string;
 
-  @OneToMany(() => Employees, (employee) => employee.idRole)
+  @OneToMany(() => Employees, (employees) => employees.role)
   employees: Employees[];
 }

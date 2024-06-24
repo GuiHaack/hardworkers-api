@@ -4,7 +4,8 @@ import { EmployeesModule } from './employees/employees.module';
 import { RolesModule } from './roles/roles.module';
 import { Employees } from './employees/employees.entity';
 import { Roles } from './roles/roles.entity';
-import { CompaniesController } from './companies/companies.controller';
+import { CompaniesModule } from './companies/companies.module';
+import { Companies } from './companies/companies.entity';
 
 @Module({
   imports: [
@@ -15,13 +16,13 @@ import { CompaniesController } from './companies/companies.controller';
       username: 'root',
       password: 'e5d4s19GUIhaack*',
       database: 'mydb',
-      entities: [Employees, Roles],
+      entities: [Employees, Roles, Companies],
       synchronize: true,
       logging: true,
     }),
     EmployeesModule,
     RolesModule,
+    CompaniesModule,
   ],
-  controllers: [CompaniesController],
 })
 export class AppModule {}
