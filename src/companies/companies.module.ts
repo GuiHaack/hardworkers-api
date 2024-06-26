@@ -4,10 +4,10 @@ import { CompaniesService } from './companies.service';
 import { CompaniesController } from './companies.controller';
 import { Companies } from './companies.entity';
 import { Employees } from '../employees/employees.entity';
-import { EmployeesModule } from '../employees/employees.module';
+import { Adresses } from '../adresses/adresses.entity'; // Importa a entidade Addresses
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Companies, Employees]), EmployeesModule],
+  imports: [TypeOrmModule.forFeature([Companies, Employees, Adresses])],
   providers: [CompaniesService],
   controllers: [CompaniesController],
 })

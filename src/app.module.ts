@@ -6,6 +6,9 @@ import { Employees } from './employees/employees.entity';
 import { Roles } from './roles/roles.entity';
 import { CompaniesModule } from './companies/companies.module';
 import { Companies } from './companies/companies.entity';
+import { AdressesModule } from './adresses/adresses.module';
+import { Adresses } from './adresses/adresses.entity';
+import { GeocodingModule } from './geocoding/geocoding.module';
 
 @Module({
   imports: [
@@ -16,13 +19,15 @@ import { Companies } from './companies/companies.entity';
       username: 'root',
       password: 'e5d4s19GUIhaack*',
       database: 'mydb',
-      entities: [Employees, Roles, Companies],
+      entities: [Employees, Roles, Companies, Adresses],
       synchronize: true,
       logging: true,
     }),
     EmployeesModule,
     RolesModule,
     CompaniesModule,
+    AdressesModule,
+    GeocodingModule,
   ],
 })
 export class AppModule {}

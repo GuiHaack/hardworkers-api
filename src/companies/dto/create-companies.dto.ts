@@ -1,26 +1,26 @@
-import { IsString, IsOptional, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateCompanyDto {
-  @IsString()
-  readonly name: string;
+  @IsNotEmpty()
+  name: string;
 
-  @IsString()
-  readonly documentNumber: string;
+  @IsNotEmpty()
+  documentNumber: string;
 
-  @IsString()
   @IsOptional()
-  readonly phoneNumber?: string;
+  phoneNumber?: string;
 
-  @IsString()
-  readonly corporateName: string;
+  @IsNotEmpty()
+  corporateName: string;
 
-  @IsString()
-  readonly tradeName: string;
+  @IsNotEmpty()
+  tradeName: string;
 
+  @IsNotEmpty()
   @IsNumber()
-  readonly idAdress: number;
+  employeeId: number;
 
-  @IsNumber()
   @IsOptional()
-  readonly employeeId?: number;
+  @IsNumber()
+  addressId?: number;
 }
