@@ -30,6 +30,12 @@ export class Adresses {
   @Column()
   neighborhood: string;
 
+  @Column()
+  complement: string;
+
+  @Column()
+  referencePoint: string;
+
   @Column({ type: 'float' })
   latitude: number;
 

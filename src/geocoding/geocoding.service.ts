@@ -11,11 +11,10 @@ export class GeocodingService {
     city: string,
     uf: string,
     zipCode: string,
-    neighborhood: string,
   ): Promise<{ latitude: number; longitude: number }> {
-    const address = `${number} ${publicPlace}, ${neighborhood}, ${city}, ${uf}, ${zipCode}`;
+    const address = `${number} ${publicPlace}, ${city}, ${uf}, ${zipCode}`;
     const response = await this.httpService
-      .get(`https://nominatim.openpublicPlacemap.org/search`, {
+      .get(`https://nominatim.openstreetmap.org/search`, {
         params: {
           q: address,
           format: 'json',

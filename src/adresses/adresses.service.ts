@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -17,8 +18,17 @@ export class AdressesService {
   ) {}
 
   async create(createAdressDto: CreateAdressDto): Promise<Adresses> {
-    const { companyId, publicPlace, number, city, uf, zipCode, neighborhood } =
-      createAdressDto;
+    const {
+      companyId,
+      publicPlace,
+      number,
+      city,
+      uf,
+      zipCode,
+      neighborhood,
+      complement,
+      referencePoint,
+    } = createAdressDto;
     const company = await this.companiesRepository.findOne({
       where: { idCompany: companyId },
     });
@@ -33,7 +43,6 @@ export class AdressesService {
       city,
       uf,
       zipCode,
-      neighborhood,
     );
 
     const adress = this.adressesRepository.create({
@@ -43,6 +52,8 @@ export class AdressesService {
       uf,
       zipCode,
       neighborhood,
+      complement,
+      referencePoint,
       latitude,
       longitude,
       company,
@@ -89,7 +100,6 @@ export class AdressesService {
           updateAdressDto.city || adress.city,
           updateAdressDto.uf || adress.uf,
           updateAdressDto.zipCode || adress.zipCode,
-          updateAdressDto.neighborhood || adress.neighborhood,
         );
       adress.latitude = latitude;
       adress.longitude = longitude;

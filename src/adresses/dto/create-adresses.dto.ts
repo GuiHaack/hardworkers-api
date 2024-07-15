@@ -20,6 +20,12 @@ export class CreateAdressDto {
   neighborhood: string;
 
   @IsNotEmpty()
+  complement: string;
+
+  @IsNotEmpty()
+  referencePoint: string;
+
+  @IsNotEmpty()
   @IsNumber()
   @IsOptional()
   companyId: number;

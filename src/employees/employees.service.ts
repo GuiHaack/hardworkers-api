@@ -17,13 +17,15 @@ export class EmployeesService {
   }
 
   findAll(): Promise<Employees[]> {
-    return this.employeesRepository.find({ relations: ['role', 'company'] });
+    return this.employeesRepository.find({
+      relations: ['role', 'company', 'company.adresses'],
+    });
   }
 
   findOne(id: number): Promise<Employees> {
     return this.employeesRepository.findOne({
       where: { idEmployee: id },
-      relations: ['role', 'company'],
+      relations: ['role', 'company', 'company.adresses'],
     });
   }
 
